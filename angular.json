@@ -76,7 +76,7 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "rina-portfolio:build:production"
+              "buildTarget": "rina-portfolio:build:development"
             },
             "development": {
               "buildTarget": "rina-portfolio:build:development"
@@ -107,8 +107,14 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy"
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "c5b606c7-4c39-48e7-8e5c-232bab58cc88"
   }
 }
