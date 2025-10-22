@@ -8,8 +8,9 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:rina-portfolio": "node dist/rina-portfolio/server/server.mjs",
-    "deploy": "ng build --output-path dist/rina-portfolio --base-href 'https://rinadhanaba.github.io/rina-portfolio/' && npx ngh --dir=dist/rina-portfolio"
-},
+      "deploy": "ng build --configuration production --base-href /rina-potfolio/ && npx angular-cli-ghpages --dir=dist/rina-portfolio/browser",
+    "build:gh-pages": "ng build --configuration production --base-href /rina-potfolio/"
+  },
   "private": true,
   "dependencies": {
     "@angular/animations": "^19.1.0",

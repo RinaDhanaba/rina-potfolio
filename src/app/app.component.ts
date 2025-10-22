@@ -8,4 +8,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'rina-portfolio';
+  hasProfileImage = false; // Set to true if you have a profile image
+
+  constructor() {}
 }

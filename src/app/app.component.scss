@@ -1,0 +1,319 @@
+// Variables
+$primary-color: #3b82f6;
+$secondary-color: #64748b;
+$dark-color: #1e293b;
+$light-color: #f8fafc;
+$border-color: #e2e8f0;
+
+// Mixins
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin card-shadow {
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+// Base Styles
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: $light-color;
+  color: $dark-color;
+  line-height: 1.6;
+}
+
+.portfolio-container {
+  display: flex;
+  min-height: 100vh;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+}
+
+// Sidebar Styles
+.sidebar {
+  width: 350px;
+  background: white;
+  border-right: 1px solid $border-color;
+  padding: 2rem;
+  position: fixed;
+  height: 100vh;
+  overflow-y: auto;
+
+  @media (max-width: 768px) {
+    position: relative;
+    width: 100%;
+    height: auto;
+    border-right: none;
+    border-bottom: 1px solid $border-color;
+  }
+}
+
+.profile-card {
+  text-align: center;
+}
+
+.profile-image {
+  margin-bottom: 1.5rem;
+
+  .profile-img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid $primary-color;
+  }
+
+  .image-placeholder {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, $primary-color, #8b5cf6);
+    @include flex-center;
+    margin: 0 auto;
+    border: 4px solid $primary-color;
+
+    i {
+      font-size: 3rem;
+      color: white;
+    }
+  }
+}
+
+.profile-info {
+  margin-bottom: 2rem;
+
+  .name {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: $dark-color;
+    margin-bottom: 0.5rem;
+  }
+
+  .title {
+    font-size: 1.1rem;
+    color: $primary-color;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+
+  .description {
+    color: $secondary-color;
+    font-size: 0.95rem;
+  }
+}
+
+.contact-info {
+  margin-bottom: 2rem;
+
+  .contact-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+    padding: 0.75rem;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: rgba($primary-color, 0.05);
+    }
+
+    .contact-icon {
+      width: 40px;
+      height: 40px;
+      background: $primary-color;
+      border-radius: 8px;
+      @include flex-center;
+      margin-right: 1rem;
+      flex-shrink: 0;
+
+      i {
+        color: white;
+        font-size: 1rem;
+      }
+    }
+
+    .contact-details {
+      .label {
+        display: block;
+        font-size: 0.75rem;
+        color: $secondary-color;
+        font-weight: 600;
+        text-transform: uppercase;
+        margin-bottom: 0.25rem;
+      }
+
+      .value {
+        display: block;
+        color: $dark-color;
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.3s ease;
+
+        &:hover {
+          color: $primary-color;
+        }
+      }
+    }
+  }
+}
+
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+
+  .social-link {
+    width: 45px;
+    height: 45px;
+    background: $light-color;
+    border-radius: 8px;
+    @include flex-center;
+    color: $secondary-color;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 1px solid $border-color;
+
+    &:hover {
+      background: $primary-color;
+      color: white;
+      transform: translateY(-2px);
+      @include card-shadow;
+    }
+
+    i {
+      font-size: 1.2rem;
+    }
+  }
+}
+
+// Main Content Styles
+.main-content {
+  flex: 1;
+  margin-left: 350px;
+  background: white;
+
+  @media (max-width: 768px) {
+    margin-left: 0;
+  }
+}
+
+.main-nav {
+  background: white;
+  border-bottom: 1px solid $border-color;
+  padding: 0 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(10px);
+
+  .nav-list {
+    display: flex;
+    list-style: none;
+    justify-content: flex-end;
+    gap: 0.5rem;
+
+    @media (max-width: 768px) {
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+  }
+
+  .nav-item {
+    .nav-link {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 1rem 1.5rem;
+      color: $secondary-color;
+      text-decoration: none;
+      font-weight: 500;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      position: relative;
+
+      &:hover {
+        color: $primary-color;
+        background: rgba($primary-color, 0.05);
+      }
+
+      &.active {
+        color: $primary-color;
+        background: rgba($primary-color, 0.1);
+
+        &::after {
+          content: '';
+          position: absolute;
+          bottom: -1px;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 30px;
+          height: 3px;
+          background: $primary-color;
+          border-radius: 2px;
+        }
+      }
+
+      i {
+        font-size: 1.1rem;
+      }
+
+      span {
+        @media (max-width: 480px) {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+.content-area {
+  padding: 2rem;
+  min-height: calc(100vh - 80px);
+
+  @media (max-width: 768px) {
+    padding: 1.5rem;
+  }
+}
+
+// Utility Classes
+.text-primary {
+  color: $primary-color;
+}
+
+.bg-primary {
+  background-color: $primary-color;
+}
+
+.card {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  @include card-shadow;
+  border: 1px solid $border-color;
+}
+
+// Animation Classes
+.fade-in {
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

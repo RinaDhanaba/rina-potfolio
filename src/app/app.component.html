@@ -1,1 +1,105 @@
-<h1>potfolio</h1>
+<div class="portfolio-container">
+  <!-- Left Sidebar - Info Card -->
+  <aside class="sidebar">
+    <div class="profile-card">
+      <div class="profile-image">
+        <img src="assets/images/profile.jpg" alt="Rina Dhanaba" class="profile-img">
+        <!-- If no image, use placeholder -->
+        <div class="image-placeholder" *ngIf="!hasProfileImage">
+          <i class="fas fa-user"></i>
+        </div>
+      </div>
+      
+      <div class="profile-info">
+        <h1 class="name">Rina Dhanaba</h1>
+        <p class="title">Website Developer</p>
+        <p class="description">Building responsive, SEO-friendly websites with modern technologies</p>
+      </div>
+
+      <div class="contact-info">
+        <div class="contact-item">
+          <div class="contact-icon">
+            <i class="fas fa-envelope"></i>
+          </div>
+          <div class="contact-details">
+            <span class="label">EMAIL</span>
+            <a href="mailto:rinadhanaba@gmail.com" class="value">rinadhanaba@gmail.com</a>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon">
+            <i class="fas fa-phone"></i>
+          </div>
+          <div class="contact-details">
+            <span class="label">PHONE</span>
+            <a href="tel:+7262939564" class="value">(726) 293-9564</a>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon">
+            <i class="fas fa-map-marker-alt"></i>
+          </div>
+          <div class="contact-details">
+            <span class="label">LOCATION</span>
+            <span class="value">Maharashtra, India</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="social-links">
+        <a href="#" class="social-link" title="GitHub">
+          <i class="fab fa-github"></i>
+        </a>
+        <a href="#" class="social-link" title="LinkedIn">
+          <i class="fab fa-linkedin"></i>
+        </a>
+        <a href="#" class="social-link" title="Twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+        <a href="mailto:rinadhanaba@gmail.com" class="social-link" title="Email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Content Area -->
+  <main class="main-content">
+    <!-- Navigation -->
+    <nav class="main-nav">
+      <ul class="nav-list">
+        <li class="nav-item">
+          <a routerLink="/about" routerLinkActive="active" class="nav-link">
+            <i class="fas fa-user"></i>
+            <span>About</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/work" routerLinkActive="active" class="nav-link">
+            <i class="fas fa-briefcase"></i>
+            <span>My Work</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/services" routerLinkActive="active" class="nav-link">
+            <i class="fas fa-cogs"></i>
+            <span>Services</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/resume" routerLinkActive="active" class="nav-link">
+            <i class="fas fa-file-alt"></i>
+            <span>Resume</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Router Outlet for Pages -->
+    <div class="content-area">
+      <router-outlet></router-outlet>
+    </div>
+  </main>
+</div>
