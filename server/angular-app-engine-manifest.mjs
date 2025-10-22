@@ -1,6 +1,6 @@
 
 export default {
-  basePath: '/',
+  basePath: 'https://rinadhanaba.github.io/rina-portfolio',
   supportedLocales: {
   "en-US": ""
 },
