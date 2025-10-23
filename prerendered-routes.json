@@ -1,9 +1,0 @@
-{
-  "routes": {
-    "/rina-potfolio": {},
-    "/rina-potfolio/about": {},
-    "/rina-potfolio/resume": {},
-    "/rina-potfolio/services": {},
-    "/rina-potfolio/work": {}
-  }
-}
