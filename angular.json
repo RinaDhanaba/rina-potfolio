@@ -22,11 +22,11 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:application",
+          "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "outputPath": "dist/rina-portfolio/browser",
             "index": "src/index.html",
-            "browser": "src/main.ts",
+            "main": "src/main.ts",
             "polyfills": [
               "zone.js"
             ],
@@ -42,11 +42,7 @@
               "src/styles.scss"
             ],
             "scripts": [],
-            "server": "src/main.server.ts",
-            "outputMode": "server",
-            "ssr": {
-              "entry": "src/server.ts"
-            }
+            "baseHref": "/rina-potfolio/"
           },
           "configurations": {
             "production": {
@@ -62,12 +58,14 @@
                   "maximumError": "10kB"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "baseHref": "/rina-potfolio/"
             },
             "development": {
               "optimization": false,
               "extractLicenses": false,
-              "sourceMap": true
+              "sourceMap": true,
+              "baseHref": "/"
             }
           },
           "defaultConfiguration": "production"
@@ -76,7 +74,7 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "rina-portfolio:build:development"
+              "buildTarget": "rina-portfolio:build:production"
             },
             "development": {
               "buildTarget": "rina-portfolio:build:development"
@@ -109,12 +107,16 @@
           }
         },
         "deploy": {
-          "builder": "angular-cli-ghpages:deploy"
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {
+            "baseHref": "/rina-potfolio/",
+            "dir": "dist/rina-portfolio/browser"
+          }
         }
       }
     }
   },
   "cli": {
-    "analytics": "c5b606c7-4c39-48e7-8e5c-232bab58cc88"
+    "analytics": false
   }
 }
