@@ -1,1 +1,79 @@
-<p>work works!</p>
+<div class="work-container fade-in">
+
+  <!-- Project Filters -->
+  <section class="filters-section">
+    <div class="filters-container">
+      <h3 class="filters-title">Filter by Category</h3>
+      <div class="filter-buttons">
+        <button 
+          *ngFor="let category of categories" 
+          [class.active]="activeCategory === category"
+          (click)="filterProjects(category)"
+          class="filter-btn">
+          {{ category }}
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Grid -->
+  <section class="projects-section">
+    <div class="projects-grid">
+      <div class="project-card" *ngFor="let project of displayedProjects">
+        <div class="project-image">
+          <img [src]="project.image" [alt]="project.title" class="project-img">
+          <div class="project-overlay">
+            <div class="project-links">
+              <a [href]="project.liveUrl" *ngIf="hasLiveUrl(project)" target="_blank" class="project-link">
+                <i class="fas fa-external-link-alt"></i>
+                Live Demo
+              </a>
+              <a [href]="project.githubUrl" *ngIf="hasGithubUrl(project)" target="_blank" class="project-link">
+                <i class="fab fa-github"></i>
+                Code
+              </a>
+              <a *ngIf="!hasLiveUrl(project) && !hasGithubUrl(project)" class="project-link disabled">
+                <i class="fas fa-info-circle"></i>
+                Details
+              </a>
+            </div>
+          </div>
+          <div class="project-category">{{ project.category }}</div>
+        </div>
+        <div class="project-content">
+          <h3 class="project-title">{{ project.title }}</h3>
+          <p class="project-description">{{ project.description }}</p>
+          <div class="project-technologies">
+            <span class="tech-tag" *ngFor="let tech of project.technologies">{{ tech }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Load More Button -->
+    <div class="load-more-section" *ngIf="filteredProjects.length > 6">
+      <button (click)="toggleShowAll()" class="load-more-btn">
+        {{ showAll ? 'Show Less' : 'Load More Projects' }}
+        <i class="fas" [class.fa-chevron-up]="showAll" [class.fa-chevron-down]="!showAll"></i>
+      </button>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="work-cta-section">
+    <div class="cta-content">
+      <h2>Have a Project in Mind?</h2>
+      <p>I'm always excited to take on new challenges and create amazing web experiences. Let's discuss how we can work together!</p>
+      <div class="cta-buttons">
+        <a routerLink="/services" class="btn btn-secondary">
+          <i class="fas fa-cogs"></i>
+          View Services
+        </a>
+        <a href="mailto:rinadhanaba@gmail.com" class="btn btn-primary">
+          <i class="fas fa-envelope"></i>
+          Start a Project
+        </a>
+      </div>
+    </div>
+  </section>
+</div>

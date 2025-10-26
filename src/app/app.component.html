@@ -1,9 +1,41 @@
 <div class="portfolio-container">
+  <!-- Mobile Overlay -->
+  <div class="mobile-overlay" 
+       [class.active]="shouldShowOverlay()"
+       (click)="closeAll()">
+  </div>
+
+  <!-- Mobile Header -->
+  <header class="mobile-header">
+    <div class="mobile-header-content">
+      <div class="mobile-name">Rina Dhanaba</div>
+      <button class="hamburger-menu" 
+              (click)="toggleNavMenu()" 
+              [class.menu-open]="isNavOpen" 
+              aria-label="Toggle navigation"
+              [attr.aria-expanded]="isNavOpen">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
   <!-- Left Sidebar - Info Card -->
-  <aside class="sidebar">
+  <aside class="sidebar" 
+         [class.sidebar-open]="isSidebarOpen"
+         [attr.aria-hidden]="shouldSidebarBeHidden()">
+    <!-- Sidebar Toggle Button -->
+    <button class="sidebar-toggle" 
+            (click)="toggleSidebar()" 
+            [class.toggle-open]="isSidebarOpen" 
+            aria-label="Toggle sidebar">
+      <i class="fas fa-chevron-right"></i>
+    </button>
+    
     <div class="profile-card">
       <div class="profile-image">
-        <img src="assets/images/profile.webp" alt="Rina Dhanaba" class="profile-img">
+        <img src="assets/images/profile.jpg" alt="Rina Dhanaba" class="profile-img">
       </div>
       
       <div class="profile-info">
@@ -44,73 +76,73 @@
         </div>
       </div>
 
-        <div class="social-links">
-          <a href="https://www.upwork.com/freelancers/~01f614d28869fefb57?mp_source=share" 
-            class="social-link" 
-            title="Upwork" 
-            target="_blank" 
-            rel="noopener noreferrer">
-            <svg width="116" height="70" viewBox="0 0 116 70" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M89.4974 41.8786C80.3998 41.8786 74.3603 35.0253 72.6784 32.3699C74.8445 15.578 81.1388 10.2926 89.4974 10.2926C97.8559 10.2926 104.15 16.6908 104.15 26.073C104.15 35.4552 97.754 41.8786 89.4974 41.8786ZM89.4974 0C74.6406 0 66.3585 9.40752 63.9376 19.0932C61.2364 14.1619 59.2487 7.56142 57.6942 1.41619H37.1547V26.25C37.1547 35.2529 32.9244 41.9039 24.6933 41.9039C16.4622 41.9039 11.7223 35.2529 11.7223 26.25L11.8243 1.41619H0V26.25C0 33.508 2.42091 40.0578 6.82953 44.7616C11.3656 49.6171 17.558 52.1207 24.7188 52.1207C39.0149 52.1207 48.9789 41.474 48.9789 26.25V9.55925C50.4569 15.047 54.0246 25.5925 60.8032 34.8483L54.4578 70H66.4859L70.6652 45.1156C72.0413 46.2283 73.4939 47.2399 75.0483 48.0997C79.0747 50.578 83.7127 51.9436 88.4526 52.0954C88.4526 52.0954 89.1916 52.1207 89.5738 52.1207C104.303 52.1207 116 41.0441 116 26.0983C116 11.1525 104.227 0 89.4974 0Z" fill="black"/>
-            </svg>
-          </a>
-          <a href="https://www.freelancer.in/u/Rinadhanaba?sb=t" 
-            class="social-link" 
-            title="Freelancer" 
-            target="_blank" 
-            rel="noopener noreferrer">
-            <svg width="128" height="95" viewBox="0 0 128 95" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M75.1779 0L83.895 12.2012L128 0M29.3529 95L53.2116 71.7205L38.8516 56.341M71.5656 0L58.8137 11.4762L80.2615 12.2748M21.9926 0L26.5722 9.36827L51.8127 10.9377M35.5051 48.5763L54.1525 13.8587L0 10.9377M37.6765 50.7775L55.2908 69.6611L74.7213 50.6527L80.7511 15.2482L57.0727 14.0426" fill="black"/>
-            </svg>
-          </a>
-          <a href="https://wa.me/917262939564" 
-            class="social-link" 
-            title="WhatsApp" 
-            target="_blank" 
-            rel="noopener noreferrer">
-            <i class="fab fa-whatsapp"></i>
-          </a>
-          <a href="https://www.linkedin.com/in/rina-dhanaba-27a5491b5" 
-            class="social-link" 
-            title="LinkedIn" 
-            target="_blank" 
-            rel="noopener noreferrer">
-            <i class="fab fa-linkedin"></i>
-          </a>
-          <a href="mailto:rinadhanaba@gmail.com" 
-            class="social-link" 
-            title="Email">
-            <i class="fas fa-envelope"></i>
-          </a>
+      <div class="social-links">
+        <a href="https://www.upwork.com/freelancers/~01f614d28869fefb57?mp_source=share" 
+          class="social-link" 
+          title="Upwork" 
+          target="_blank" 
+          rel="noopener noreferrer">
+          <svg width="22" height="15" viewBox="0 0 116 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M89.4974 41.8786C80.3998 41.8786 74.3603 35.0253 72.6784 32.3699C74.8445 15.578 81.1388 10.2926 89.4974 10.2926C97.8559 10.2926 104.15 16.6908 104.15 26.073C104.15 35.4552 97.754 41.8786 89.4974 41.8786ZM89.4974 0C74.6406 0 66.3585 9.40752 63.9376 19.0932C61.2364 14.1619 59.2487 7.56142 57.6942 1.41619H37.1547V26.25C37.1547 35.2529 32.9244 41.9039 24.6933 41.9039C16.4622 41.9039 11.7223 35.2529 11.7223 26.25L11.8243 1.41619H0V26.25C0 33.508 2.42091 40.0578 6.82953 44.7616C11.3656 49.6171 17.558 52.1207 24.7188 52.1207C39.0149 52.1207 48.9789 41.474 48.9789 26.25V9.55925C50.4569 15.047 54.0246 25.5925 60.8032 34.8483L54.4578 70H66.4859L70.6652 45.1156C72.0413 46.2283 73.4939 47.2399 75.0483 48.0997C79.0747 50.578 83.7127 51.9436 88.4526 52.0954C88.4526 52.0954 89.1916 52.1207 89.5738 52.1207C104.303 52.1207 116 41.0441 116 26.0983C116 11.1525 104.227 0 89.4974 0Z" fill="currentColor"/>
+          </svg>
+        </a>
+        <a href="https://www.freelancer.in/u/Rinadhanaba?sb=t" 
+          class="social-link" 
+          title="Freelancer" 
+          target="_blank" 
+          rel="noopener noreferrer">
+          <svg width="22" height="15" viewBox="0 0 128 95" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M75.1779 0L83.895 12.2012L128 0M29.3529 95L53.2116 71.7205L38.8516 56.341M71.5656 0L58.8137 11.4762L80.2615 12.2748M21.9926 0L26.5722 9.36827L51.8127 10.9377M35.5051 48.5763L54.1525 13.8587L0 10.9377M37.6765 50.7775L55.2908 69.6611L74.7213 50.6527L80.7511 15.2482L57.0727 14.0426" fill="currentColor"/>
+          </svg>
+        </a>
+        <a href="https://wa.me/917262939564" 
+          class="social-link" 
+          title="WhatsApp" 
+          target="_blank" 
+          rel="noopener noreferrer">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/rina-dhanaba-27a5491b5" 
+          class="social-link" 
+          title="LinkedIn" 
+          target="_blank" 
+          rel="noopener noreferrer">
+          <i class="fab fa-linkedin"></i>
+        </a>
+        <a href="mailto:rinadhanaba@gmail.com" 
+          class="social-link" 
+          title="Email">
+          <i class="fas fa-envelope"></i>
+        </a>
       </div>
     </div>
   </aside>
 
   <!-- Main Content Area -->
-  <main class="main-content">
+  <main class="main-content" [class.content-full-width]="!isSidebarOpen">
     <!-- Navigation -->
     <nav class="main-nav">
-      <ul class="nav-list">
+      <ul class="nav-list" [class.nav-open]="isNavOpen">
         <li class="nav-item">
-          <a routerLink="/about" routerLinkActive="active" class="nav-link">
+          <a routerLink="/about" routerLinkActive="active" class="nav-link" (click)="onNavigate()">
             <i class="fas fa-user"></i>
             <span>About</span>
           </a>
         </li>
         <li class="nav-item">
-          <a routerLink="/work" routerLinkActive="active" class="nav-link">
+          <a routerLink="/work" routerLinkActive="active" class="nav-link" (click)="onNavigate()">
             <i class="fas fa-briefcase"></i>
             <span>My Work</span>
           </a>
         </li>
         <li class="nav-item">
-          <a routerLink="/services" routerLinkActive="active" class="nav-link">
+          <a routerLink="/services" routerLinkActive="active" class="nav-link" (click)="onNavigate()">
             <i class="fas fa-cogs"></i>
             <span>Services</span>
           </a>
         </li>
         <li class="nav-item">
-          <a routerLink="/resume" routerLinkActive="active" class="nav-link">
+          <a routerLink="/resume" routerLinkActive="active" class="nav-link" (click)="onNavigate()">
             <i class="fas fa-file-alt"></i>
             <span>Resume</span>
           </a>

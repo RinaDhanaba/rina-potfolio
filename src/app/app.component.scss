@@ -1,40 +1,15 @@
-// Variables
-$primary-color: #3b82f6;
-$secondary-color: #64748b;
-$dark-color: #1e293b;
-$light-color: #f8fafc;
-$border-color: #e2e8f0;
-
-// Mixins
-@mixin flex-center {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-@mixin card-shadow {
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-}
-
-// Base Styles
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: 'Inter', sans-serif;
-  background-color: $light-color;
-  color: $dark-color;
-  line-height: 1.6;
-}
+// app.component.scss - Home/Layout Specific Styles
+@import '../styles.scss';
 
 .portfolio-container {
   display: flex;
   min-height: 100vh;
+  width: 100%;
+  position: relative;
+  margin: 0 !important;
+  padding: 0 !important;
 
-  @media (max-width: 768px) {
+ @media (max-width: 768px)  {
     flex-direction: column;
   }
 }
@@ -44,22 +19,114 @@ body {
   width: 350px;
   background: white;
   border-right: 1px solid $border-color;
-  padding: 2rem;
+  padding: 10px;
   position: fixed;
   height: 100vh;
-  overflow-y: auto;
+  z-index: 99;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateX(0);
 
   @media (max-width: 768px) {
-    position: relative;
+    transform: translateX(-100%);
     width: 100%;
-    height: auto;
-    border-right: none;
-    border-bottom: 1px solid $border-color;
+    max-width: 320px;
+    
+    &.sidebar-open {
+      transform: translateX(0);
+      box-shadow: 5px 0 25px rgba(0, 0, 0, 0.15);
+    }
+  }
+
+  // Desktop closed state
+  &:not(.sidebar-open) {
+    transform: translateX(-100%);
+    
+    @media (max-width: 768px) {
+      transform: translateX(-100%);
+    }
+  }
+
+  @media (max-width: 480px) {
+    max-width: 280px;
   }
 }
 
+// Sidebar Toggle Button - Updated for desktop
+.sidebar-toggle {
+  position: absolute;
+  top: 45px;
+  right: -40px;
+  background: $primary-color;
+  border: none;
+  width: 40px;
+  height: 40px;
+  @include flex-center;
+  cursor: pointer;
+  color: white;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba($primary-color, 0.3);
+  z-index: 99;
+
+  i {
+    font-size: 1.1rem;
+    transition: transform 0.3s ease;
+  }
+
+  &:hover {
+    background: $primary-dark;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba($primary-color, 0.4);
+  }
+
+  // Rotate icon when sidebar is closed
+  &:not(.toggle-open) i {
+    transform: rotate(180deg);
+  }
+
+  @media (max-width: 768px) {
+    top: 60px;
+    
+    i {
+      font-size: 1rem;
+    }
+  }
+}
+
+// Main Content Styles - Updated for desktop sidebar toggle
+.main-content {
+  flex: 1;
+  margin-left: 350px;
+  background: white;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 1;
+  transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  // When sidebar is closed on desktop
+  &.content-full-width {
+    margin-left: 0;
+    
+    @media (max-width: 768px) {
+      margin-left: 0;
+    }
+  }
+
+  @media (max-width: 768px) {
+    margin-left: 0;
+    width: 100%;
+    
+    &.content-full-width {
+      margin-left: 0;
+    }
+  }
+}
+
+// Rest of the SCSS remains the same...
 .profile-card {
   text-align: center;
+  position: relative;
 }
 
 .profile-image {
@@ -71,13 +138,18 @@ body {
     border-radius: 50%;
     object-fit: cover;
     border: 4px solid $primary-color;
+    transition: all 0.3s ease;
+    
+    &:hover {
+      transform: scale(1.05);
+    }
   }
 
   .image-placeholder {
     width: 150px;
     height: 150px;
     border-radius: 50%;
-    background: linear-gradient(135deg, $primary-color, #8b5cf6);
+    background: linear-gradient(135deg, $primary-color, $accent-color);
     @include flex-center;
     margin: 0 auto;
     border: 4px solid $primary-color;
@@ -90,7 +162,7 @@ body {
 }
 
 .profile-info {
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 
   .name {
     font-size: 1.75rem;
@@ -109,11 +181,12 @@ body {
   .description {
     color: $secondary-color;
     font-size: 0.95rem;
+    line-height: 1.5;
   }
 }
 
 .contact-info {
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   text-align: left;
 
   .contact-item {
@@ -123,6 +196,7 @@ body {
     padding: 0.75rem;
     border-radius: 8px;
     transition: background-color 0.3s ease;
+    @extend .touch-element;
 
     &:hover {
       background-color: rgba($primary-color, 0.05);
@@ -171,7 +245,8 @@ body {
 .social-links {
   display: flex;
   justify-content: center;
-  gap: 1rem;
+  gap: 5px;
+  flex-wrap: wrap;
 
   .social-link {
     width: 45px;
@@ -183,6 +258,7 @@ body {
     text-decoration: none;
     transition: all 0.3s ease;
     border: 1px solid $border-color;
+    @extend .touch-element;
 
     &:hover {
       background: $primary-color;
@@ -194,38 +270,130 @@ body {
     i {
       font-size: 1.2rem;
     }
+
+    svg {
+      width: 20px;
+      height: 20px;
+    }
   }
 }
 
-// Main Content Styles
-.main-content {
-  flex: 1;
-  margin-left: 350px;
+// Mobile Header
+.mobile-header {
+  display: none;
   background: white;
+  border-bottom: 1px solid $border-color;
+  padding: 1rem;
+  position: sticky;
+  top: 0;
+  z-index: 99;
+  backdrop-filter: blur(10px);
 
   @media (max-width: 768px) {
-    margin-left: 0;
+    display: block;
+  }
+
+  .mobile-header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .mobile-name {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: $primary-dark;
   }
 }
 
+// Hamburger Menu
+.hamburger-menu {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 21px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  position: relative;
+  z-index: 1002;
+  @extend .touch-element;
+
+  @media (max-width: 768px) {
+    display: flex;
+  }
+
+  span {
+    display: block;
+    height: 3px;
+    width: 100%;
+    background-color: $dark-color;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+    transform-origin: center;
+  }
+
+  &:hover span {
+    background-color: $primary-color;
+  }
+
+  &.menu-open {
+    span:nth-child(1) {
+      transform: rotate(45deg) translate(6px, 6px);
+    }
+    
+    span:nth-child(2) {
+      opacity: 0;
+    }
+    
+    span:nth-child(3) {
+      transform: rotate(-45deg) translate(6px, -6px);
+    }
+  }
+}
+
+// Navigation Styles
 .main-nav {
   background: white;
   border-bottom: 1px solid $border-color;
-  padding: 0 2rem;
-  position: sticky;
+  padding: 0;
+  position: fixed;
   top: 0;
-  z-index: 100;
+  z-index: 999;
   backdrop-filter: blur(10px);
+
+  @media (max-width: 768px) {
+    position: fixed;
+    top: 50px;
+    width: 100%;
+  }
 
   .nav-list {
     display: flex;
     list-style: none;
     justify-content: flex-end;
     gap: 0.5rem;
+    margin: 0;
+    padding: 0;
 
     @media (max-width: 768px) {
-      justify-content: center;
-      flex-wrap: wrap;
+      width: 100%;
+      background: white;
+      flex-direction: column;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+      transform: translateY(-100%);
+      opacity: 0;
+      display: none;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 1000;
+      
+      &.nav-open {
+        transform: translateY(0);
+        opacity: 1;
+        display: block;
+      }
     }
   }
 
@@ -241,6 +409,8 @@ body {
       border-radius: 8px;
       transition: all 0.3s ease;
       position: relative;
+      white-space: nowrap;
+      @extend .touch-element;
 
       &:hover {
         color: $primary-color;
@@ -266,10 +436,27 @@ body {
 
       i {
         font-size: 1.1rem;
+        width: 20px;
+        text-align: center;
       }
 
       span {
         @media (max-width: 480px) {
+          display: inline;
+        }
+      }
+    }
+
+    @media (max-width: 768px) {
+      width: 100%;
+      
+      .nav-link {
+        justify-content: flex-start;
+        padding: 1.25rem 1.5rem 1.25rem 3rem;
+        border-radius: 6px;
+        margin-bottom: 0.5rem;
+        
+        &.active::after {
           display: none;
         }
       }
@@ -278,43 +465,65 @@ body {
 }
 
 .content-area {
-  padding: 2rem;
+  padding: 5px;
+  flex: 1;
   min-height: calc(100vh - 80px);
+  position: relative;
+  z-index: 1;
 
   @media (max-width: 768px) {
-    padding: 1.5rem;
+    min-height: calc(100vh - 140px);
   }
 }
 
-// Utility Classes
-.text-primary {
-  color: $primary-color;
+// Overlay for mobile when sidebar or nav is open
+.mobile-overlay {
+  display: none;
+  
+  @media (max-width: 768px){
+    &.active {
+      display: block;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 1;
+      backdrop-filter: blur(2px);
+    }
+  }
 }
 
-.bg-primary {
-  background-color: $primary-color;
+// Improved responsive design for tablets
+@media (max-width: 768px) {
+  .sidebar {
+    width: 300px;
+  }
+  
+  .main-content {
+    margin-left: 300px;
+    
+    &.content-full-width {
+      margin-left: 0;
+    }
+  }
+  
+  .profile-image .profile-img {
+    width: 120px;
+    height: 120px;
+  }
+  
+  .contact-info .contact-item {
+    padding: 0.5rem;
+  }
 }
 
-.card {
-  background: white;
-  border-radius: 12px;
-  padding: 2rem;
-  @include card-shadow;
-  border: 1px solid $border-color;
-}
-
-// Animation Classes
-.fade-in {
-  animation: fadeIn 0.6s ease-in-out;
-}
-
-@keyframes fadeIn {
-  from {
+// Loading state improvements
+.profile-img {
+  transition: opacity 0.3s ease;
+  
+  &:not([src]) {
     opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
   }
 }
