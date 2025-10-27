@@ -1,0 +1,151 @@
+<div class="case-study-page fade-in">
+  <!-- Back Button -->
+  <div class="case-study-header">
+    <button class="back-btn" (click)="goBack()">
+      <i class="fas fa-arrow-left"></i>
+      Back to Projects
+    </button>
+  </div>
+
+  <!-- Case Study Content -->
+  <div class="case-study-content" *ngIf="project">
+    <!-- Hero Section -->
+    <section class="case-study-hero">
+      <div class="hero-image">
+        <img [src]="project.image" [alt]="project.title" class="project-hero-img">
+        <div class="hero-overlay">
+          <div class="hero-content">
+            <div class="project-category-badge">{{ project.category }}</div>
+            <h1 class="project-title">{{ project.title }}</h1>
+            <div class="project-meta">
+              <span class="project-date">{{ project.date }}</span>
+              <span class="project-duration">{{ project.duration }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Project Details -->
+    <section class="project-details-section">
+      <div class="container">
+        <div class="details-grid">
+          <!-- Main Content -->
+          <div class="main-content">
+            <!-- Overview -->
+            <div class="content-section">
+              <h2>Project Overview</h2>
+              <p class="project-description">{{ project.fullDescription || project.description }}</p>
+            </div>
+
+            <!-- Challenges & Solutions -->
+            <div class="content-section" *ngIf="project.challenges && project.solutions">
+              <h2>Challenges & Solutions</h2>
+              <div class="challenges-solutions-grid">
+                <div class="challenges">
+                  <h3>Challenges</h3>
+                  <ul class="feature-list">
+                    <li *ngFor="let challenge of project.challenges">{{ challenge }}</li>
+                  </ul>
+                </div>
+                <div class="solutions">
+                  <h3>Solutions</h3>
+                  <ul class="feature-list">
+                    <li *ngFor="let solution of project.solutions">{{ solution }}</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- Results -->
+            <div class="content-section" *ngIf="project.results">
+              <h2>Key Results</h2>
+              <ul class="results-list">
+                <li *ngFor="let result of project.results">{{ result }}</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Sidebar -->
+          <div class="sidebar-content">
+            <!-- Project Links -->
+            <div class="project-links-card card">
+              <h3>Project Links</h3>
+              <div class="link-buttons">
+                <a *ngIf="project.liveUrl" 
+                   [href]="project.liveUrl" 
+                   target="_blank" 
+                   class="btn btn-primary btn-block">
+                  <i class="fas fa-external-link-alt"></i>
+                  View Live Demo
+                </a>
+                <a *ngIf="project.githubUrl" 
+                   [href]="project.githubUrl" 
+                   target="_blank" 
+                   class="btn btn-outline btn-block">
+                  <i class="fab fa-github"></i>
+                  View Code
+                </a>
+              </div>
+            </div>
+
+            <!-- Technologies -->
+            <div class="technologies-card card">
+              <h3>Technologies Used</h3>
+              <div class="tech-tags">
+                <span class="tech-tag" *ngFor="let tech of project.technologies">{{ tech }}</span>
+              </div>
+            </div>
+
+            <!-- Project Info -->
+            <div class="project-info-card card">
+              <h3>Project Details</h3>
+              <div class="info-list">
+                <div class="info-item">
+                  <span class="info-label">Category:</span>
+                  <span class="info-value">{{ project.category }}</span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">Date:</span>
+                  <span class="info-value">{{ project.date }}</span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">Duration:</span>
+                  <span class="info-value">{{ project.duration }}</span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">Status:</span>
+                  <span class="info-value status-completed">Completed</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="case-study-cta">
+      <div class="container">
+        <div class="cta-content text-center">
+          <h2>Ready to Start Your Project?</h2>
+          <p>Let's discuss how we can bring your ideas to life with a custom web solution.</p>
+          <div class="cta-actions">
+            <a href="mailto:rinadhanaba@gmail.com" class="btn btn-primary">
+              <i class="fas fa-envelope"></i> Start a Project
+            </a>
+            <a href="https://wa.me/917262939564" class="btn btn-outline" target="_blank">
+              <i class="fab fa-whatsapp"></i> Quick Consultation
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Loading State -->
+  <div class="loading-state" *ngIf="!project">
+    <div class="spinner"></div>
+    <p>Loading case study...</p>
+  </div>
+</div>

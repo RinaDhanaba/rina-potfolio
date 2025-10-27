@@ -7,6 +7,7 @@ import { AboutComponent } from './about/about.component';
 import { WorkComponent } from './work/work.component';
 import { ServicesComponent } from './services/services.component';
 import { ResumeComponent } from './resume/resume.component';
+import { CaseStudyModalComponent } from './case-study-modal/case-study-modal.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { ResumeComponent } from './resume/resume.component';
     AboutComponent,
     WorkComponent,
     ServicesComponent,
-    ResumeComponent
+    ResumeComponent,
+    CaseStudyModalComponent
   ],
   imports: [
     BrowserModule,

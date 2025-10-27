@@ -1,51 +1,9 @@
 <div class="work-page fade-in">
-  <div class="card card-hover mb-4">
-    <h1 class="text-primary">My Portfolio</h1>
-    <p>Here are some of the projects I've worked on, showcasing my expertise in WordPress, CMS development, and SEO optimization.</p>
-  </div>
-
-  <div class="card card-hover mt-4">
-    <h3 class="text-primary">Technologies I Work With</h3>
-    <div class="flex-between" style="flex-wrap: wrap; gap: 1rem;">
-      <div>
-        <h4 class="text-primary">Frontend</h4>
-        <ul>
-          <li>HTML5, CSS3, JavaScript</li>
-          <li>Responsive Design</li>
-          <li>Cross-Browser Compatibility</li>
-        </ul>
-      </div>
-      <div>
-        <h4 class="text-primary">CMS Platforms</h4>
-        <ul>
-          <li>WordPress</li>
-          <li>Shopify</li>
-          <li>Squarespace</li>
-          <li>WIX</li>
-        </ul>
-      </div>
-      <div>
-        <h4 class="text-primary">Tools & Other</h4>
-        <ul>
-          <li>Git Version Control</li>
-          <li>Figma to Code</li>
-          <li>SEO Optimization</li>
-          <li>Page Speed Optimization</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-
-
-<div class="work-container fade-in">
 
   <!-- Project Filters -->
   <section class="filters-section">
     <div class="filters-container">
-      <h3 class="filters-title">Filter by Category</h3>
+      <h3 class="filters-title">Filter Projects</h3>
       <div class="filter-buttons">
         <button 
           *ngFor="let category of categories" 
@@ -66,17 +24,13 @@
           <img [src]="project.image" [alt]="project.title" class="project-img">
           <div class="project-overlay">
             <div class="project-links">
+              <button (click)="viewCaseStudy(project)" class="case-study-btn">
+                <i class="fas fa-eye"></i>
+                View Case Study
+              </button>
               <a [href]="project.liveUrl" *ngIf="hasLiveUrl(project)" target="_blank" class="project-link">
                 <i class="fas fa-external-link-alt"></i>
                 Live Demo
-              </a>
-              <a [href]="project.githubUrl" *ngIf="hasGithubUrl(project)" target="_blank" class="project-link">
-                <i class="fab fa-github"></i>
-                Code
-              </a>
-              <a *ngIf="!hasLiveUrl(project) && !hasGithubUrl(project)" class="project-link disabled">
-                <i class="fas fa-info-circle"></i>
-                Details
               </a>
             </div>
           </div>
@@ -85,9 +39,21 @@
         <div class="project-content">
           <h3 class="project-title">{{ project.title }}</h3>
           <p class="project-description">{{ project.description }}</p>
+          <div class="project-meta">
+            <span class="project-date">{{ project.date }}</span>
+            <span class="project-duration">{{ project.duration }}</span>
+          </div>
           <div class="project-technologies">
             <span class="tech-tag" *ngFor="let tech of project.technologies">{{ tech }}</span>
           </div>
+          <!-- <button (click)="viewCaseStudy(project)" class="btn btn-outline btn-sm">
+            <i class="fas fa-file-alt"></i>
+            Read Case Study
+          </button> -->
+          <button (click)="viewCaseStudy(project)" class="case-study-btn">
+            <i class="fas fa-eye"></i>
+            View Case Study
+          </button>
         </div>
       </div>
     </div>
@@ -95,9 +61,30 @@
     <!-- Load More Button -->
     <div class="load-more-section" *ngIf="filteredProjects.length > 6">
       <button (click)="toggleShowAll()" class="load-more-btn">
-        {{ showAll ? 'Show Less' : 'Load More Projects' }}
+        {{ showAll ? 'Show Less Projects' : 'Load More Projects' }}
         <i class="fas" [class.fa-chevron-up]="showAll" [class.fa-chevron-down]="!showAll"></i>
       </button>
     </div>
   </section>
+
+
+
+  <!-- CTA Section -->
+  <div class="work-cta-section card">
+    <div class="cta-content">
+      <h2 class="text-primary">Have a Project in Mind?</h2>
+      <p>Let's discuss how we can bring your ideas to life with a custom web solution.</p>
+      <div class="cta-actions">
+        <a href="mailto:rinadhanaba@gmail.com" class="btn btn-primary">
+          <i class="fas fa-envelope"></i> Start a Project
+        </a>
+        <a href="https://wa.me/917262939564" class="btn btn-outline" target="_blank">
+          <i class="fab fa-whatsapp"></i> Quick Consultation
+        </a>
+      </div>
+    </div>
+  </div>
+
+
+
 </div>
