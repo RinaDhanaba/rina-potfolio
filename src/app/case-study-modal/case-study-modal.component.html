@@ -18,7 +18,7 @@
             <div class="project-category-badge">{{ project.category }}</div>
             <h1 class="project-title">{{ project.title }}</h1>
             <div class="project-meta">
-              <span class="project-date">{{ project.date }}</span>
+              <span class="project-date">{{ project.date }}</span> |
               <span class="project-duration">{{ project.duration }}</span>
             </div>
           </div>
@@ -38,32 +38,14 @@
               <p class="project-description">{{ project.fullDescription || project.description }}</p>
             </div>
 
-            <!-- Challenges & Solutions -->
-            <div class="content-section" *ngIf="project.challenges && project.solutions">
-              <h2>Challenges & Solutions</h2>
-              <div class="challenges-solutions-grid">
-                <div class="challenges">
-                  <h3>Challenges</h3>
-                  <ul class="feature-list">
-                    <li *ngFor="let challenge of project.challenges">{{ challenge }}</li>
-                  </ul>
-                </div>
-                <div class="solutions">
-                  <h3>Solutions</h3>
-                  <ul class="feature-list">
-                    <li *ngFor="let solution of project.solutions">{{ solution }}</li>
-                  </ul>
-                </div>
+            <!-- Technologies -->
+            <div class="technologies-card card">
+              <h3>Technologies Used</h3>
+              <div class="tech-tags">
+                <span class="tech-tag" *ngFor="let tech of project.technologies">{{ tech }}</span>
               </div>
             </div>
 
-            <!-- Results -->
-            <div class="content-section" *ngIf="project.results">
-              <h2>Key Results</h2>
-              <ul class="results-list">
-                <li *ngFor="let result of project.results">{{ result }}</li>
-              </ul>
-            </div>
           </div>
 
           <!-- Sidebar -->
@@ -86,14 +68,6 @@
                   <i class="fab fa-github"></i>
                   View Code
                 </a>
-              </div>
-            </div>
-
-            <!-- Technologies -->
-            <div class="technologies-card card">
-              <h3>Technologies Used</h3>
-              <div class="tech-tags">
-                <span class="tech-tag" *ngFor="let tech of project.technologies">{{ tech }}</span>
               </div>
             </div>
 

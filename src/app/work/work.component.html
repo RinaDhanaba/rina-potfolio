@@ -3,7 +3,6 @@
   <!-- Project Filters -->
   <section class="filters-section">
     <div class="filters-container">
-      <h3 class="filters-title">Filter Projects</h3>
       <div class="filter-buttons">
         <button 
           *ngFor="let category of categories" 
@@ -24,11 +23,11 @@
           <img [src]="project.image" [alt]="project.title" class="project-img">
           <div class="project-overlay">
             <div class="project-links">
-              <button (click)="viewCaseStudy(project)" class="case-study-btn">
+              <button (click)="viewCaseStudy(project)" class="btn btn-primary case-study-btn">
                 <i class="fas fa-eye"></i>
                 View Case Study
               </button>
-              <a [href]="project.liveUrl" *ngIf="hasLiveUrl(project)" target="_blank" class="project-link">
+              <a [href]="project.liveUrl" *ngIf="hasLiveUrl(project)" target="_blank" class="btn project-link">
                 <i class="fas fa-external-link-alt"></i>
                 Live Demo
               </a>
@@ -50,7 +49,7 @@
             <i class="fas fa-file-alt"></i>
             Read Case Study
           </button> -->
-          <button (click)="viewCaseStudy(project)" class="case-study-btn">
+          <button (click)="viewCaseStudy(project)" class="btn btn-primary case-study-btn">
             <i class="fas fa-eye"></i>
             View Case Study
           </button>
