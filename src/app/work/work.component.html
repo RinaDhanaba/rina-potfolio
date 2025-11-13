@@ -1,7 +1,8 @@
 <div class="work-page fade-in">
+  <div>No projects added yet...</div>
 
   <!-- Project Filters -->
-  <section class="filters-section">
+  <!-- <section class="filters-section">
     <div class="filters-container">
       <div class="filter-buttons">
         <button 
@@ -13,10 +14,10 @@
         </button>
       </div>
     </div>
-  </section>
+  </section> -->
 
   <!-- Projects Grid -->
-  <section class="projects-section">
+  <!-- <section class="projects-section">
     <div class="projects-grid">
       <div class="project-card" *ngFor="let project of displayedProjects">
         <div class="project-image">
@@ -44,46 +45,48 @@
           </div>
           <div class="project-technologies">
             <span class="tech-tag" *ngFor="let tech of project.technologies">{{ tech }}</span>
-          </div>
-          <!-- <button (click)="viewCaseStudy(project)" class="btn btn-outline btn-sm">
+          </div> -->
+  <!-- <button (click)="viewCaseStudy(project)" class="btn btn-outline btn-sm">
             <i class="fas fa-file-alt"></i>
             Read Case Study
           </button> -->
-          <button (click)="viewCaseStudy(project)" class="btn btn-primary case-study-btn">
+  <!-- <button (click)="viewCaseStudy(project)" class="btn btn-primary case-study-btn">
             <i class="fas fa-eye"></i>
             View Case Study
           </button>
         </div>
       </div>
-    </div>
+    </div> -->
 
-    <!-- Load More Button -->
-    <div class="load-more-section" *ngIf="filteredProjects.length > 6">
+  <!-- Load More Button -->
+  <!-- <div class="load-more-section" *ngIf="filteredProjects.length > 6">
       <button (click)="toggleShowAll()" class="load-more-btn">
         {{ showAll ? 'Show Less Projects' : 'Load More Projects' }}
         <i class="fas" [class.fa-chevron-up]="showAll" [class.fa-chevron-down]="!showAll"></i>
       </button>
     </div>
-  </section>
-
-
+  </section> -->
 
   <!-- CTA Section -->
   <div class="work-cta-section card">
     <div class="cta-content">
       <h2 class="text-primary">Have a Project in Mind?</h2>
-      <p>Let's discuss how we can bring your ideas to life with a custom web solution.</p>
+      <p>
+        Let's discuss how we can bring your ideas to life with a custom web
+        solution.
+      </p>
       <div class="cta-actions">
         <a href="mailto:rinadhanaba@gmail.com" class="btn btn-primary">
           <i class="fas fa-envelope"></i> Start a Project
         </a>
-        <a href="https://wa.me/917262939564" class="btn btn-outline" target="_blank">
+        <a
+          href="https://wa.me/917262939564"
+          class="btn btn-outline"
+          target="_blank"
+        >
           <i class="fab fa-whatsapp"></i> Quick Consultation
         </a>
       </div>
     </div>
   </div>
-
-
-
 </div>
